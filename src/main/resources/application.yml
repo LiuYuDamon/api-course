@@ -1,0 +1,86 @@
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+  application:
+    name: api-course
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sba?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: liuyuly
+server:
+  servlet:
+    context-path: /course
+  port: 8765
+ 
+
+logging:
+ level: 
+  com:
+   sba:
+    course:
+     mapper: Debug  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+    
+# 服务管理配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"        #暴漏的接口，"*"表示所有web监控接口
+#        exclude:            #不暴漏的接口
+      base-path: /actuator  #监控根路径
+    enabled-by-default: true
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+swagger.enabled: true
+  
+---
+spring:
+  profiles: k8s
+  application:
+    name: api-course
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://sba-course-db:3306/sba?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: sba_course
+    password: sba_course_666
+server:
+  servlet:
+    context-path: /course
+  port: 8765
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eurake-server:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+# 服务管理配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"        #暴漏的接口，"*"表示所有web监控接口
+#        exclude:            #不暴漏的接口
+      base-path: /actuator  #监控根路径
+    enabled-by-default: true
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+swagger.enabled: true
+
