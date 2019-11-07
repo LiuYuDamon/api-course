@@ -97,7 +97,7 @@
     </dependencyManagement>
 
     <build>
-        <finalName>docker_eureka</finalName>
+        <finalName>api-course</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
