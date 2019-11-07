@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-course
+  namespace: sba
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-course
+  template:
+    metadata:
+      labels:
+        app: api-course
+    spec:
+      containers:
+        - name: api-course
+          image: registry.cn-beijing.aliyuncs.com/damondocker/api-course:{version}
+          ports:
+            - name: http-port
+              containerPort: 8765
+          env:
+            - name: spring_profiles_active
+              value: k8s
+      imagePullSecrets:
+        - name: sba
