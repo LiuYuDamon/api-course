@@ -12,6 +12,6 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface UserCourseMapper {
 
-	@Select("SELECT id,skill,name,description,startDate,endDate,mentorName,progress FROM course where progress=#{progress} and userName=#{username}")
+	@Select("SELECT id,skill,name,description,startDate,endDate,mentorName,progress,tags FROM course where progress=#{progress} and userName=#{username}")
 	List<UserCourse> findUserCourse(@Param("username") String username, @Param("progress") Integer progress);
 }

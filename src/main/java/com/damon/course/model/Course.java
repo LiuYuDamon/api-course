@@ -15,6 +15,16 @@ public class Course {
 	private String status;
 	private Integer progress;
 	private String userName;
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+
+	private String tags;
 	
 	public Integer getId() {
 		return id;
@@ -84,6 +94,7 @@ public class Course {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	
 	
 

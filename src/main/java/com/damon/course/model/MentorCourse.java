@@ -11,6 +11,16 @@ public class MentorCourse {
 	private Date startDate;
 	private Date endDate;
 	private Float fee;
+	private String tags;
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+
 	private Integer rate;
 	private String description;
 	public Integer getId() {

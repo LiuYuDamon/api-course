@@ -69,6 +69,43 @@ public class SbaMentorApi {
 
 		}
 	}
+
+	@RequestMapping(value = "/listByMentor", method = RequestMethod.GET, produces = "application/json")
+	@ApiOperation(value = "SBA Mentor Course List")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "ok"), @ApiResponse(code = 400, message = "Bad Request"),
+			@ApiResponse(code = 401, message = "No Authroization"), @ApiResponse(code = 403, message = "No Permission"),
+			@ApiResponse(code = 404, message = "No Mentors Found"),
+			@ApiResponse(code = 500, message = "Internal Error") })
+	public ResponseEntity<RspModel> findCoursesByMentor(@RequestParam("mentorName") String mentorName,@RequestParam("status") String status) {
+
+		try {
+
+			List<MentorCourse> mentorcourses = mentorcoursemapper.findMentorsByMentor(mentorName,status);
+
+			if (mentorcourses.size() > 0) {
+
+				RspModel rsp = new RspModel();
+				rsp.setCode(200);
+				rsp.setMessage("Found Courses");
+				rsp.setData(mentorcourses);
+				return new ResponseEntity<RspModel>(rsp, HttpStatus.OK);
+
+			} else {
+				RspModel rsp = new RspModel();
+				rsp.setCode(404);
+				rsp.setMessage("No Found Courses");
+				return new ResponseEntity<RspModel>(rsp, HttpStatus.OK);
+			}
+
+
+		} catch (Exception ex) {
+			RspModel rsp = new RspModel();
+			rsp.setCode(500);
+			rsp.setMessage(ex.getMessage());
+			return new ResponseEntity<RspModel>(rsp, HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
+	}
 	
 	@RequestMapping(value = "/searchcourse", method = RequestMethod.GET, produces = "application/json")
 	@ApiOperation(value = "SBA Mentor Course List")

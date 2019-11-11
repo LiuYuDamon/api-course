@@ -7,6 +7,17 @@ public class UserCourse {
 	private Integer id;
 	private String skill;
 	private String name;
+
+	private String tags;
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+
 	private String description;
 	private Date startDate;
 	private Date endDate;
