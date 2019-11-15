@@ -39,11 +39,11 @@ public class SbaMentorApi {
 			@ApiResponse(code = 401, message = "No Authroization"), @ApiResponse(code = 403, message = "No Permission"),
 			@ApiResponse(code = 404, message = "No Mentors Found"),
 			@ApiResponse(code = 500, message = "Internal Error") })
-	public ResponseEntity<RspModel> findCourses() {
+	public ResponseEntity<RspModel> findCourses(@RequestParam String searchText) {
 
 		try {
 
-			List<MentorCourse> mentorcourses = mentorcoursemapper.findMentors();
+			List<MentorCourse> mentorcourses = mentorcoursemapper.findMentors(searchText);
 			
 			if (mentorcourses.size() > 0) {
 				
@@ -76,11 +76,11 @@ public class SbaMentorApi {
 			@ApiResponse(code = 401, message = "No Authroization"), @ApiResponse(code = 403, message = "No Permission"),
 			@ApiResponse(code = 404, message = "No Mentors Found"),
 			@ApiResponse(code = 500, message = "Internal Error") })
-	public ResponseEntity<RspModel> findCoursesByMentor(@RequestParam("mentorName") String mentorName,@RequestParam("status") String status) {
+	public ResponseEntity<RspModel> findCoursesByMentor(@RequestParam("mentorName") String mentorName,@RequestParam("status") String status,@RequestParam String searchText) {
 
 		try {
 
-			List<MentorCourse> mentorcourses = mentorcoursemapper.findMentorsByMentor(mentorName,status);
+			List<MentorCourse> mentorcourses = mentorcoursemapper.findMentorsByMentor(mentorName,status,searchText);
 
 			if (mentorcourses.size() > 0) {
 
@@ -113,11 +113,11 @@ public class SbaMentorApi {
 			@ApiResponse(code = 401, message = "No Authroization"), @ApiResponse(code = 403, message = "No Permission"),
 			@ApiResponse(code = 404, message = "No Mentors Found"),
 			@ApiResponse(code = 500, message = "Internal Error") })
-	public ResponseEntity<RspModel> searchCourses() {
+	public ResponseEntity<RspModel> searchCourses(@RequestParam String searchText) {
 
 		try {
 
-			List<MentorCourse> mentorcourses = mentorcoursemapper.searchMentors();
+			List<MentorCourse> mentorcourses = mentorcoursemapper.searchMentors(searchText);
 			
 			if (mentorcourses.size() > 0) {
 				

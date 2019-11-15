@@ -35,11 +35,12 @@ public class SbaUserCourseApi {
 			@ApiResponse(code = 404, message = "No Mentors Found"),
 			@ApiResponse(code = 500, message = "Internal Error") })
 	public ResponseEntity<RspModel> finUserCourses(@ApiParam(name = "username", required = true) @RequestParam String username,
-												   @ApiParam(name = "progress", required = true) @RequestParam Integer progress) {
+												   @ApiParam(name = "progress", required = true) @RequestParam Integer progress,
+												   @RequestParam String searchText) {
 
 		try {
 
-			List<UserCourse> usercourses = usercoursemapper.findUserCourse(username, progress);
+			List<UserCourse> usercourses = usercoursemapper.findUserCourse(username, progress,searchText);
 
 			if (usercourses.size() > 0) {
 				

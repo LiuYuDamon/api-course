@@ -12,6 +12,6 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface UserCourseMapper {
 
-	@Select("SELECT id,skill,name,description,startDate,endDate,mentorName,progress,tags FROM course where progress=#{progress} and userName=#{username}")
-	List<UserCourse> findUserCourse(@Param("username") String username, @Param("progress") Integer progress);
+	@Select("SELECT id,skill,name,description,startDate,endDate,mentorName,progress,tags FROM course where progress=#{progress} and userName=#{username}(and a.name LIKE CONCAT('%',#{searchText},'%') or a.tags LIKE CONCAT('%',#{searchText},'%'))")
+	List<UserCourse> findUserCourse(@Param("username") String username, @Param("progress") Integer progress,@Param("searchText") String searchText);
 }
