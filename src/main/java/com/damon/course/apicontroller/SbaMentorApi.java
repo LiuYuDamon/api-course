@@ -39,7 +39,7 @@ public class SbaMentorApi {
 			@ApiResponse(code = 401, message = "No Authroization"), @ApiResponse(code = 403, message = "No Permission"),
 			@ApiResponse(code = 404, message = "No Mentors Found"),
 			@ApiResponse(code = 500, message = "Internal Error") })
-	public ResponseEntity<RspModel> findCourses(@RequestParam String searchText) {
+	public ResponseEntity<RspModel> findCourses(@RequestParam(value="searchText",defaultValue="",required=false) String searchText) {
 
 		try {
 
@@ -76,7 +76,7 @@ public class SbaMentorApi {
 			@ApiResponse(code = 401, message = "No Authroization"), @ApiResponse(code = 403, message = "No Permission"),
 			@ApiResponse(code = 404, message = "No Mentors Found"),
 			@ApiResponse(code = 500, message = "Internal Error") })
-	public ResponseEntity<RspModel> findCoursesByMentor(@RequestParam("mentorName") String mentorName,@RequestParam("status") String status,@RequestParam String searchText) {
+	public ResponseEntity<RspModel> findCoursesByMentor(@RequestParam("mentorName") String mentorName,@RequestParam("status") String status,@RequestParam(value="searchText",defaultValue="",required=false) String searchText) {
 
 		try {
 
@@ -113,7 +113,7 @@ public class SbaMentorApi {
 			@ApiResponse(code = 401, message = "No Authroization"), @ApiResponse(code = 403, message = "No Permission"),
 			@ApiResponse(code = 404, message = "No Mentors Found"),
 			@ApiResponse(code = 500, message = "Internal Error") })
-	public ResponseEntity<RspModel> searchCourses(@RequestParam String searchText) {
+	public ResponseEntity<RspModel> searchCourses(@RequestParam(value="searchText",defaultValue="",required=false) String searchText) {
 
 		try {
 

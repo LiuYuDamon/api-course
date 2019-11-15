@@ -36,7 +36,7 @@ public class SbaUserCourseApi {
 			@ApiResponse(code = 500, message = "Internal Error") })
 	public ResponseEntity<RspModel> finUserCourses(@ApiParam(name = "username", required = true) @RequestParam String username,
 												   @ApiParam(name = "progress", required = true) @RequestParam Integer progress,
-												   @RequestParam String searchText) {
+												   @RequestParam(value="searchText",defaultValue="",required=false) String searchText) {
 
 		try {
 
